@@ -1,12 +1,14 @@
 # SlimSwaggerDispatcher
 
-Maybe it's about automation, or just about beign more declarative because a DSL non Touring complete language will just more correct, anyway I find it just amazing the possibility to describe an API by using the [Open-API-Specification](https://github.com/OAI/OpenAPI-Specification/blob/master/README.md) and let this description be automatically your code. Isn't that how it should be development? Never build something unique, but something that build something unique, or something else.
+Maybe it's about automation, or just about beign more declarative because a DSL non Touring complete language will just more correct, anyway I find it just amazing the possibility to describe an API by using the [Open-API-Specification](https://github.com/OAI/OpenAPI-Specification/blob/master/README.md) and let this description be automatically your code. Isn't that how it should be development?
 
 Furthermore, the Api specification from Swagger can be automatically validated, tested
 ![Swagger](https://2434zd29misd3e4a4f1e73ki-wpengine.netdna-ssl.com/wp-content/uploads/2016/11/SwaggerHP_Design-.png)
 
 In the end you'll have a yml or json file that describe your API, something like this:
-![Json Specification](https://raw.githubusercontent.com/virgiliolino/SwaggerSlimDispatcher/master/swagger.png) and this file will automatically set with the use of our class all the routess pointing those to a CommandHandler that implement a simple standard interface.
+![Json Specification](https://raw.githubusercontent.com/virgiliolino/SwaggerSlimDispatcher/master/swagger.png) 
+
+By using our library all routes will automatically be set. Every route pointing to a CommandHandler indicated by a unique operationId.
 So in the image of the example, you can see that there is a route:
 /pet that accept post requests. It will be enough to use our class, when you start the application the route /pet will accept a post.
 And so for the gets that you see below, like /pet/findByStatus, etc.
