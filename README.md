@@ -15,6 +15,8 @@ And so for the gets that you see below, like /pet/findByStatus, etc.
 For every path, it will be executed the command handler with the operationI.
 In the example for /pet, you can see the **operationId: addPet**. So making a post request to /pet, the system will try to execute the class AddPet::execute passing the params
 
+You may find an example of a fully working Open-Api specification [here](http://petstore.swagger.io/) [the full json file](http://petstore.swagger.io/v2/swagger.json)
+
 ## Usage
 
 ```
