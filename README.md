@@ -13,7 +13,9 @@ So in the image of the example, you can see that there is a route:
 /pet that accept post requests. It will be enough to use our class, when you start the application the route /pet will accept a post.
 And so for the gets that you see below, like /pet/findByStatus, etc.
 For every path, it will be executed the command handler with the operationI.
-In the example for /pet, you can see the **operationId: addPet**. So making a post request to /pet, the system will try to execute the class AddPet::execute passing the params
+In the example for /pet, you can see the **operationId: addPet**. So making a post request to /pet, the system will try to execute the class AddPet::execute passing the params. The operationId must be a fully qualified name of a class. Something like this for example:
+operationId: \MyApplication\CommandHandlers\AddPett
+which means that will execue AddPett::execute
 
 You may find an example of a fully working Open-Api specification [here](http://petstore.swagger.io/) [the full json file](http://petstore.swagger.io/v2/swagger.json)
 
