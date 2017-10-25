@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Dispatcher\\Swagger": "src/dispatcher/Swagger/"
+            "Dispatcher\\Swagger\\": "src/dispatcher/Swagger/"
         }
     }
 }
