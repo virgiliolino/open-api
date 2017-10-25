@@ -1,5 +1,5 @@
 <?php
-namespace Slim\Dispatcher\Swagger;
+namespace Dispatcher\Swagger;
 
 use Slim\Http\Request;
 use Slim\Http\Response;
