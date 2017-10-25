@@ -21,6 +21,10 @@ You may find an example of a fully working Open-Api specification [here](http://
 
 ## Usage
 
+Even if its working, I'd not consider it really a *stable* package. So to install it you need to proceed in that way:
+composer config minimum-stability dev
+composer require dispatcher/swagger-dispatcher
+
 ```
 $swaggerConfigProvider = new \Dispatcher\Swagger\ConfigProvider\Yaml();
 $swaggerConfig = $swaggerConfigProvider->getFromFile($path);
