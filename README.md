@@ -19,11 +19,15 @@ which means that will execue AddPett::execute
 
 You may find an example of a fully working Open-Api specification [here](http://petstore.swagger.io/) [the full json file](http://petstore.swagger.io/v2/swagger.json)
 
-## Usage
+## Installation
 
 Even if its working, I'd not consider it really a *stable* package. So to install it you need to proceed in that way:
+```
 composer config minimum-stability dev
 composer require dispatcher/swagger-dispatcher
+```
+
+## Usage
 
 ```
 $swaggerConfigProvider = new \Dispatcher\Swagger\ConfigProvider\Yaml();
