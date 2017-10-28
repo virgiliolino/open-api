@@ -1,0 +1,61 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Sample hello world application using slim and SlimSwaggerDispatcher as automatic router generator \n[https://github.com/virgiliolino/SwaggerSlimDispatcher/](https://github.com/virgiliolino/SwaggerSlimDispatcher/)\n",
+    "version": "1.0.0",
+    "title": "Hello world",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "virgilio@posteo.de"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags": [
+    {
+      "name": "framework"
+    }
+  ],
+  "paths": {
+    "/hello/{name}": {
+      "get": {
+        "tags": [
+          "hello"
+        ],
+        "summary": "Sample route",
+        "description": "Return the standard greetings",
+        "operationId": "\\HelloWorld\\CommandHandlers\\HelloWorld",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "thing to greet",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid Greeting Suplied"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      }
+    }
+  },
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "host": "samplehost.com"
+}
