@@ -2,7 +2,16 @@
 
 Maybe it's about automation, or just about beign more declarative because a DSL non Touring complete language will just more correct, anyway I find it just amazing the possibility to describe an API by using the [Open-API-Specification](https://github.com/OAI/OpenAPI-Specification/blob/master/README.md) and let this specification be your code: this class will set every route using the Slim functionalities, and for every route point to a CommandHandler.
 
-In this way, you will not have a few overpopulated Controllers, but instead for every entry point a command handler.
+I'd suggest, the best way to see it in action is just to clone the repository and try the Example Hello World Application:
+```
+git clone git@github.com:virgiliolino/SwaggerSlimDispatcher.git
+cd SwaggerSlimDispatcher/Examples/HelloWorld/
+composer install   #composer install will actually install Slim and SwaggerSlimDispatcher
+php -S localhost:8080 -t public public/index.php #start the server
+curl localhost:8080/hello/world # or just open the browser localhost:8080/hello/world
+```
+
+You will not have a few overpopulated Controllers, but instead for every entry point a command handler.
 You can read at this [blog post](https://jenssegers.com/85/goodbye-controllers-hello-request-handlers?utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=A%20Semana%20PHP) for some ideas of how we intend our architecutre 
 
 Furthermore, the Api specification from Swagger can be automatically validated, tested
