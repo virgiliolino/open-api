@@ -14,7 +14,7 @@ class SwaggerDispatcher {
                 $app->map(
                     [$method], 
                     $route, 
-                    CommandHandler::register(
+                    CommandRegisterer::register(
                         $route, 
                         $method, 
                         $data['operationId'],
@@ -45,7 +45,7 @@ class Elements implements \Psr\Container\ContainerInterface {
     }
 }
 
-class CommandHandler {
+class CommandRegisterer {
     public static function register(
             $route, 
             $method,
