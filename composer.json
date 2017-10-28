@@ -1,5 +1,5 @@
 {
-    "name": "dispatcher/swagger-dispatcher",
+    "name": "dispatcher/swagger",
     "description": "Swagger Dispatcher",
     "version": "0.1",
     "type": "library",
@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Dispatcher\\Swagger\\": "src/dispatcher/Swagger/"
+            "Dispatcher\\": "Dispatcher"
         }
     }
 }
