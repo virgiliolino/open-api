@@ -1,8 +1,13 @@
 <?php
+namespace Dispatcher\Swagger;
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+interface CommandHandler {
+
+    public static function execute(
+        \Slim\Http\Request $request,
+        \Slim\Http\Response $response,
+        $params
+    );
+
+}
 
