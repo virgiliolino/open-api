@@ -7,7 +7,7 @@ class ParserFactory {
     
     private static $parserMapper = [
         self::JSON_PARSER => 'Dispatcher\Swagger\Parser\Json',
-        self::YAML_PARSER => 'Dispathcer\Swagger\Parser\Yaml',
+        self::YAML_PARSER => 'Dispatcher\Swagger\Parser\Yaml',
     ];
     
     public static function parserFor($path): Parser {
