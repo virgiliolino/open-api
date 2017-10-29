@@ -41,10 +41,9 @@ Even if its working, I'd not consider it really a *stable* package. So to instal
 ## Usage
 
 ```
-$swaggerConfigProvider = new \Dispatcher\Swagger\ConfigProvider\Yaml();
-$swaggerConfig = $swaggerConfigProvider->getFromFile($path);
-\Dispatcher\Swagger\SwaggerDispatcher::InjectRoutesFromConfig($app, $swaggerConfig); 
-        
+$swaggerConfigParser = Dispatcher\Swagger\ParserFactory::parserFor($swaggerApiFile);
+$swaggerConfig = $swaggerConfigParser->parse($swaggerApiFile);
+\Dispatcher\Swagger\SwaggerDispatcher::InjectRoutesFromConfig($app, $swaggerConfig);        
 ```
 
 Where $app is a \Slim\App object, and $path just the url to the yaml file.
