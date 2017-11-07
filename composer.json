@@ -1,7 +1,7 @@
 {
     "name": "dispatcher/swagger",
     "description": "Swagger Dispatcher",
-    "version": "0.1.2",
+    "version": "0.1.4",
     "type": "library",
     "keywords": ["swagger", "dispatcher", "route", "builder", "slim", "framework"],
     "homepage": "https://github.com/virgiliolino/SwaggerSlimDispatcher",

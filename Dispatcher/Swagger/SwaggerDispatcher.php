@@ -60,7 +60,8 @@ class CommandRegisterer {
             $operationId,
             $requestParams, 
             $paramsValidator, 
-            $requestValidator
+            $requestValidator,
+            \Psr\Container\ContainerInterface $container
         ) {
             if (!$paramsValidator->isValid($requestParams, $request)) {
                 //log error
@@ -71,8 +72,11 @@ class CommandRegisterer {
                 //log error
                 //bla
             } 
-            call_user_func_array("{$operationId}::execute", [$request, $response, $params]);  
-        };    
+
+            /* @var CommandHandler $handler */
+            $handler = $container->get($operationId);
+            $handler->execute($request, $response, $params);
+        };
     }
 }
 
