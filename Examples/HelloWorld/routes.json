@@ -26,7 +26,7 @@
         ],
         "summary": "Sample route",
         "description": "Return the standard greetings",
-        "operationId": "\\HelloWorld\\CommandHandlers\\HelloWorld",
+        "operationId": "HelloWorld",
         "produces": [
           "application/json"
         ],

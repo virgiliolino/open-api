@@ -1,9 +1,10 @@
 <?php
 namespace Dispatcher\Swagger;
 
-use Slim\Http\Request;
-use Slim\Http\Response;
-
+use \Psr\Container\ContainerInterface;
+use \Psr\Http\Message\RequestInterface;
+use \Psr\Http\Message\ResponseInterface;
+           
 class SwaggerDispatcher {
     public static function InjectRoutesFromConfig(\Slim\App $app, $config) {
         $paramsValidator = new ParamsValidator();
@@ -21,7 +22,7 @@ class SwaggerDispatcher {
                         $requestParams, 
                         $paramsValidator, 
                         $requestValidator,
-                        $app
+                        $app->getContainer()
                     )
                 );
             }
@@ -30,7 +31,7 @@ class SwaggerDispatcher {
     
 }
 
-class Elements implements \Psr\Container\ContainerInterface {
+class Elements implements ContainerInterface {
     private $elements;
     
     public function __construct(array $elements) {
@@ -47,21 +48,22 @@ class Elements implements \Psr\Container\ContainerInterface {
 
 class CommandRegisterer {
     public static function register(
-            $route, 
-            $method,
-            String $operationId,
-            Elements $requestParams, 
-            ParamsValidator $paramsValidator, 
-            RequestValidator $requestValidator
+        $route, 
+        $method,
+        String $operationId,
+        ContainerInterface $requestParams, 
+        ParamsValidator $paramsValidator, 
+        RequestValidator $requestValidator,
+        ContainerInterface $container
     ) {
-        return function (Request $request, Response $response, $params)  use (
+        return function (RequestInterface $request, ResponseInterface $response, $params)  use (
             $route, 
             $method, 
             $operationId,
             $requestParams, 
             $paramsValidator, 
             $requestValidator,
-            \Psr\Container\ContainerInterface $container
+            $container
         ) {
             if (!$paramsValidator->isValid($requestParams, $request)) {
                 //log error
@@ -82,11 +84,17 @@ class CommandRegisterer {
 
 
 class ParamsValidator {
-    private function validateTypes(Elements $requestParams, Request $request) {
+    private function validateTypes(
+        ContainerInterface $requestParams, 
+        RequestInterface $request
+    ) {
         return true;
     }
     
-    public function isValid(Elements $requestParams, Request $request) {
+    public function isValid(
+        ContainerInterface $requestParams, 
+        RequestInterface $request
+    ) {
         //validate types, maybe with filter_var
         if (!$this->validateTypes($requestParams, $request)) {
             return false;
@@ -95,7 +103,12 @@ class ParamsValidator {
 }
 
 class RequestValidator {
-    public function isValid($route, $method, Elements $requestParams, request $request) {
+    public function isValid(
+        $route, 
+        $method, 
+        ContainerInterface $requestParams, 
+        RequestInterface $request
+    ) {
         return true;
     }
 }

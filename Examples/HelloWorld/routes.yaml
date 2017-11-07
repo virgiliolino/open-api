@@ -20,7 +20,7 @@ paths:
       - hello
       summary: Sample route
       description: Return the standard greetings
-      operationId: HelloWorld\CommandHandler\HelloWorld
+      operationId: HelloWorld
       produces:
       - application/json
       parameters:

@@ -1,7 +1,9 @@
 <?php
 require 'vendor/autoload.php';
 $app = new \Slim\App;
-$container['HelloWorld'] = function ($c) {
+$container = $app->getContainer();
+//your command Handlers need to be injected by operationId
+$container['HelloWorld'] = function () {
     return new \HelloWorld\CommandHandlers\HelloWorld();
 };
 $swaggerApiFile = 'routes.json';
