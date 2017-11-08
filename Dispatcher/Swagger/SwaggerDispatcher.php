@@ -9,9 +9,11 @@ class SwaggerDispatcher {
     public static function InjectRoutesFromConfig(\Slim\App $app, $config) {
         $paramsValidator = new ParamsValidator();
         $requestValidator = new RequestValidator();
-       foreach ($config['paths'] as $route => $path) {
+        foreach ($config['paths'] as $route => $path) {
             foreach ($path as $method => $data) {
-               $requestParams = new Elements($data['parameters']);
+                $parameters = isset($data['parameters']) ?
+                    $data['parameters'] : [];
+                $requestParams = new Elements($parameters);
                 $app->map(
                     [$method], 
                     $route, 
