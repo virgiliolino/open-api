@@ -6,16 +6,25 @@ use \Psr\Http\Message\RequestInterface;
 use \Psr\Http\Message\ResponseInterface;
            
 class SwaggerDispatcher {
-    public static function InjectRoutesFromConfig(\Slim\App $app, $config) {
+    public static function InjectRoutesFromConfig(
+        \Slim\App $app, 
+        $config, 
+        CommandRegisterer $commandRegisterer = null
+    ) {
         $paramsValidator = new ParamsValidator();
         $requestValidator = new RequestValidator();
-       foreach ($config['paths'] as $route => $path) {
+	if ($commandRegisterer === null) {
+	   $commandRegisterer = new DefaultCommandRegisterer();
+	}
+        foreach ($config['paths'] as $route => $path) {
             foreach ($path as $method => $data) {
-               $requestParams = new Elements($data['parameters']);
+                $parameters = isset($data['parameters']) ?
+                    $data['parameters'] : [];
+                $requestParams = new Elements($parameters);
                 $app->map(
                     [$method], 
                     $route, 
-                    CommandRegisterer::register(
+                    $commandRegisterer->register(
                         $route, 
                         $method, 
                         $data['operationId'],
@@ -45,43 +54,6 @@ class Elements implements ContainerInterface {
         return isset($this->elements[$id]);
     }
 }
-
-class CommandRegisterer {
-    public static function register(
-        $route, 
-        $method,
-        String $operationId,
-        ContainerInterface $requestParams, 
-        ParamsValidator $paramsValidator, 
-        RequestValidator $requestValidator,
-        ContainerInterface $container
-    ) {
-        return function (RequestInterface $request, ResponseInterface $response, $params)  use (
-            $route, 
-            $method, 
-            $operationId,
-            $requestParams, 
-            $paramsValidator, 
-            $requestValidator,
-            $container
-        ) {
-            if (!$paramsValidator->isValid($requestParams, $request)) {
-                //log error
-                //bla
-            }
-            
-            if (!$requestValidator->isValid($route, $method, $requestParams, $request)) {
-                //log error
-                //bla
-            } 
-
-            /* @var CommandHandler $handler */
-            $handler = $container->get($operationId);
-            $handler->execute($request, $response, $params);
-        };
-    }
-}
-
 
 class ParamsValidator {
     private function validateTypes(

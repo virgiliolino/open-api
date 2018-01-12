@@ -50,12 +50,12 @@ $container = $app->getContainer();
 $container['HelloWorld'] = function ($c) {
     return new \HelloWorld\CommandHandlers\HelloWorld();
 };
-        
+       
 $swaggerApiFile = 'routes.json';
-$swaggerConfigParser = Dispatcher\Swagger\ParserFactory::parserFor($swaggerApiFile);
-$swaggerConfig = $swaggerConfigParser->parse($swaggerApiFile);
-\Dispatcher\Swagger\SwaggerDispatcher::InjectRoutesFromConfig($app, $swaggerConfig); 
-$app->run();
+$commandHandler = new Dispatcher\Swagger\DefaultCommandRegisterer();
+$swaggerConfigParser = Dispatcher\Swagger\ParserFactory::parserFor($swaggerFile);
+$swaggerConfig = $swaggerConfigParser->parse($swaggerFile);
+\Dispatcher\Swagger\SwaggerDispatcher::InjectRoutesFromConfig($app, $swaggerConfig);
 ```
 
 As you may see we're injecting HelloWorld, a command Handler with the same id of operationId that you may find on routes.json

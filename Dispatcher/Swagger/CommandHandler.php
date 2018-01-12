@@ -1,13 +1,10 @@
 <?php
 namespace Dispatcher\Swagger;
 
+use \Psr\Http\Message\RequestInterface;
+use \Psr\Http\Message\ResponseInterface;
+
 interface CommandHandler {
-
-    public static function execute(
-        \Slim\Http\Request $request,
-        \Slim\Http\Response $response,
-        $params
-    );
-
+    public function execute(RequestInterface $request, ResponseInterface $response, $params);
 }
 
