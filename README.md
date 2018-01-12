@@ -11,6 +11,10 @@ php -S localhost:8080 -t public public/index.php #start the server
 curl localhost:8080/hello/world # or just open the browser localhost:8080/hello/world
 ```
 
+For a fully working application, you could take a look at a ReactJS + Slim Skeleton that provides all the functionalities needed for a modern application.
+The url is [here](https://github.com/incubactor/slim-react-skeleton/)
+The OpenApi specification is [here](https://app.swaggerhub.com/apis/virgiliolino/slim-react-skeleton/1.0.0)
+
 You will not have a few overpopulated Controllers, but instead for every entry point a command handler.
 You can read at this [blog post](https://jenssegers.com/85/goodbye-controllers-hello-request-handlers?utm_campaign=Revue%20newsletter&utm_medium=Newsletter&utm_source=A%20Semana%20PHP) for some ideas of how we intend our architecutre 
 
@@ -52,7 +56,6 @@ $commandHandler = new Dispatcher\Swagger\DefaultCommandRegisterer();
 $swaggerConfigParser = Dispatcher\Swagger\ParserFactory::parserFor($swaggerFile);
 $swaggerConfig = $swaggerConfigParser->parse($swaggerFile);
 \Dispatcher\Swagger\SwaggerDispatcher::InjectRoutesFromConfig($app, $swaggerConfig);
-$app->run();
 ```
 
 As you may see we're injecting HelloWorld, a command Handler with the same id of operationId that you may find on routes.json
