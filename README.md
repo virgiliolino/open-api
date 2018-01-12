@@ -38,15 +38,24 @@ Even if its working, I'd not consider it really a *stable* package. So to instal
  composer require dispatcher/swagger-dispatcher dev-master
 ```
 
-## Usage
+## Examples/Helloworld
 
 ```
-$swaggerConfigParser = Dispatcher\Swagger\ParserFactory::parserFor($swaggerApiFile);
-$swaggerConfig = $swaggerConfigParser->parse($swaggerApiFile);
-\Dispatcher\Swagger\SwaggerDispatcher::InjectRoutesFromConfig($app, $swaggerConfig);        
+$app = new \Slim\App;
+$container = $app->getContainer();
+$container['HelloWorld'] = function ($c) {
+    return new \HelloWorld\CommandHandlers\HelloWorld();
+};
+       
+$swaggerApiFile = 'routes.json';
+$commandHandler = new Dispatcher\Swagger\DefaultCommandRegisterer();
+$swaggerConfigParser = Dispatcher\Swagger\ParserFactory::parserFor($swaggerFile);
+$swaggerConfig = $swaggerConfigParser->parse($swaggerFile);
+\Dispatcher\Swagger\SwaggerDispatcher::InjectRoutesFromConfig($app, $swaggerConfig);
+$app->run();
 ```
 
-Where $app is a \Slim\App object, and $path just the url to the yaml file.
+As you may see we're injecting HelloWorld, a command Handler with the same id of operationId that you may find on routes.json
 
 That's all folks.
 
