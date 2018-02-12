@@ -1,0 +1,9 @@
+{
+    "require": {
+        "dispatcher/swagger-dispatcher": "dev-master",
+        "slim/slim": "^3.8"
+    },
+    "autoload": {
+        "psr-4": {"HelloWorld\\": "HelloWorld"}
+    }
+}
