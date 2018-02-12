@@ -1,22 +1,22 @@
 {
-    "name": "dispatcher/swagger",
-    "description": "Swagger Dispatcher",
+    "name": "dispatcher/open-api",
+    "description": "Data driven dispatcher that implements the OpenApi specification",
     "version": "0.1.4",
     "type": "library",
-    "keywords": ["swagger", "dispatcher", "route", "builder", "slim", "framework"],
-    "homepage": "https://github.com/virgiliolino/SwaggerSlimDispatcher",
+    "keywords": ["openApi", "swagger", "dispatcher", "route", "builder", "slim", "framework"],
+    "homepage": "https://github.com/virgiliolino/open-api",
     "license": "GPL",
     "authors": [
         {
             "name": "Virgilio Lino",
-            "email": "virgilio@posteo.de",
-            "homepage": "https://github.com/virgiliolino/SwaggerSlimDispatcher",
+            "email": "virgiliolino@gmail.com",
+            "homepage": "https://github.com/virgiliolino/open-api",
             "role": "Developer"
         }
     ],
     "support": {
-        "issues": "https://github.com/virgiliolino/SwaggerSlimDispatcher/issues",
-        "docs": "https://github.com/virgiliolino/SwaggerSlimDispatcher/blob/master/README.md"
+        "issues": "https://github.com/virgiliolino/open-api/issues",
+        "docs": "https://github.com/virgiliolino/open-api/blob/master/README.md"
     },
     "require": {
         "php": ">=5.3.0"
