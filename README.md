@@ -47,15 +47,14 @@ Even if its working, I'd not consider it really a *stable* package. So to instal
 ```
 $app = new \Slim\App;
 $container = $app->getContainer();
-$container['HelloWorld'] = function ($c) {
+$container['HelloWorld'] = function () {
     return new \HelloWorld\CommandHandlers\HelloWorld();
 };
-       
-$swaggerApiFile = 'routes.json';
-$commandHandler = new Dispatcher\Swagger\DefaultCommandRegisterer();
-$swaggerConfigParser = Dispatcher\Swagger\ParserFactory::parserFor($swaggerFile);
-$swaggerConfig = $swaggerConfigParser->parse($swaggerFile);
-\Dispatcher\Swagger\SwaggerDispatcher::InjectRoutesFromConfig($app, $swaggerConfig);
+$openApiFile = 'routes.json';
+$openApiConfigParser = Dispatcher\OpenApi\ParserFactory::parserFor($openApiFile);
+$openApiConfig = $openApiConfigParser->parse($openApiFile);
+\Dispatcher\OpenApi\OpenApiDispatcher::InjectRoutesFromConfig($app, $openApiConfig);
+$app->run();
 ```
 
 As you may see we're injecting HelloWorld, a command Handler with the same id of operationId that you may find on routes.json
