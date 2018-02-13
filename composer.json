@@ -5,7 +5,7 @@
     "type": "library",
     "keywords": ["openApi", "swagger", "dispatcher", "route", "builder", "slim", "framework"],
     "homepage": "https://github.com/virgiliolino/open-api",
-    "license": "GPL",
+    "license": "LGPL-3.0-or-later",
     "authors": [
         {
             "name": "Virgilio Lino",
