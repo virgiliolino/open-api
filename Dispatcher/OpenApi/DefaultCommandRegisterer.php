@@ -1,5 +1,5 @@
 <?php
-namespace Dispatcher\Swagger;
+namespace Dispatcher\OpenApi;
 
 use \Psr\Container\ContainerInterface;
 use \Psr\Http\Message\RequestInterface;

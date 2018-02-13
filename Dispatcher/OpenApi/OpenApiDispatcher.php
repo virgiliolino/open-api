@@ -1,11 +1,11 @@
 <?php
-namespace Dispatcher\Swagger;
+namespace Dispatcher\OpenApi;
 
 use \Psr\Container\ContainerInterface;
 use \Psr\Http\Message\RequestInterface;
 use \Psr\Http\Message\ResponseInterface;
            
-class SwaggerDispatcher {
+class OpenApiDispatcher {
     public static function InjectRoutesFromConfig(
         \Slim\App $app, 
         $config, 

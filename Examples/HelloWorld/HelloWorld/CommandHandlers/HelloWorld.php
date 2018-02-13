@@ -1,16 +1,20 @@
 <?php
 namespace HelloWorld\CommandHandlers;
 
-class HelloWorld implements \Dispatcher\Swagger\CommandHandler {
-    public static function execute(
-        \Slim\Http\Request $request, 
-        \Slim\Http\Response $response, 
-	$params
-    ) {
-	 $name = $request->getAttribute('name');
-	 $response->getBody()->write("Hello, $name");
+use Dispatcher\OpenApi\CommandHandler;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
-	 return $response;
+class HelloWorld implements CommandHandler {
+    public function execute(
+        RequestInterface $request,
+        ResponseInterface $response,
+	    $params
+    ) {
+	    $name = $request->getAttribute('name');
+	    $response->getBody()->write("Hello, $name");
+
+	    return $response;
     }
 }
 

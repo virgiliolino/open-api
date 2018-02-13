@@ -6,8 +6,8 @@ $container = $app->getContainer();
 $container['HelloWorld'] = function () {
     return new \HelloWorld\CommandHandlers\HelloWorld();
 };
-$swaggerApiFile = 'routes.json';
-$swaggerConfigParser = Dispatcher\Swagger\ParserFactory::parserFor($swaggerApiFile);
-$swaggerConfig = $swaggerConfigParser->parse($swaggerApiFile);
-\Dispatcher\Swagger\SwaggerDispatcher::InjectRoutesFromConfig($app, $swaggerConfig); 
+$openApiFile = 'routes.json';
+$openApiConfigParser = Dispatcher\OpenApi\ParserFactory::parserFor($openApiFile);
+$openApiConfig = $openApiConfigParser->parse($openApiFile);
+\Dispatcher\OpenApi\OpenApiDispatcher::InjectRoutesFromConfig($app, $openApiConfig);
 $app->run();

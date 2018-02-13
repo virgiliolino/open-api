@@ -1,9 +1,7 @@
 <?php
-namespace Dispatcher\Swagger;
+namespace Dispatcher\OpenApi;
 
 use \Psr\Container\ContainerInterface;
-use \Psr\Http\Message\RequestInterface;
-use \Psr\Http\Message\ResponseInterface;
 
 interface CommandRegisterer {
     public function register(
@@ -14,5 +12,5 @@ interface CommandRegisterer {
         ParamsValidator $paramsValidator,
         RequestValidator $requestValidator,
         ContainerInterface $container
-        ); 
+    );
 }

@@ -1,6 +1,6 @@
 {
     "require": {
-        "dispatcher/swagger-dispatcher": "dev-master",
+        "dispatcher/open-api": "dev-master",
         "slim/slim": "^3.8"
     },
     "autoload": {
