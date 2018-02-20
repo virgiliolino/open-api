@@ -1,7 +1,7 @@
 {
     "name": "dispatcher/open-api",
     "description": "Data driven dispatcher that implements the OpenApi specification",
-    "version": "0.1.4",
+    "version": "1.0.0",
     "type": "library",
     "keywords": ["openApi", "swagger", "dispatcher", "route", "builder", "slim", "framework"],
     "homepage": "https://github.com/virgiliolino/open-api",
@@ -22,7 +22,6 @@
         "php": ">=7.0",
         "psr/http-message": "^1.0",
         "psr/container": "^1.0",
-        "slim/slim": "~3.9"
     },
     "autoload": {
         "psr-4": {
