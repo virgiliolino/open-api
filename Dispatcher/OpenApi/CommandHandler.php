@@ -5,6 +5,12 @@ use \Psr\Http\Message\RequestInterface;
 use \Psr\Http\Message\ResponseInterface;
 
 interface CommandHandler {
-    public function execute(RequestInterface $request, ResponseInterface $response, $params);
+    public function execute(
+        String $operationId,
+        RequestInterface $request,
+        ResponseInterface $response,
+        $params,
+        $customAttributes = []
+    );
 }
 

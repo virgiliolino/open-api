@@ -1,86 +1,39 @@
 <?php
 namespace Dispatcher\OpenApi;
 
+use Bridge\Application\ApplicationBridge;
+use Dispatcher\OpenApi\CommandRegisterer\DefaultCommandRegisterer;
+use Dispatcher\OpenApi\Route\DefaultRouteInjector;
+use Dispatcher\OpenApi\Route\RouteInjector;
+use Dispatcher\OpenApi\Validators\NullParamsValidator;
+use Dispatcher\OpenApi\Validators\NullRequestValidator;
+use Dispatcher\OpenApi\Validators\ParamsValidator;
+use Dispatcher\OpenApi\Validators\RequestValidator;
 use \Psr\Container\ContainerInterface;
 use \Psr\Http\Message\RequestInterface;
 use \Psr\Http\Message\ResponseInterface;
-           
+
 class OpenApiDispatcher {
-    public static function InjectRoutesFromConfig(
-        \Slim\App $app, 
-        $config, 
-        CommandRegisterer $commandRegisterer = null
-    ) {
-        $paramsValidator = new ParamsValidator();
-        $requestValidator = new RequestValidator();
-	if ($commandRegisterer === null) {
-	   $commandRegisterer = new DefaultCommandRegisterer();
-	}
-        foreach ($config['paths'] as $route => $path) {
-            foreach ($path as $method => $data) {
-                $parameters = isset($data['parameters']) ?
-                    $data['parameters'] : [];
-                $requestParams = new Elements($parameters);
-                $app->map(
-                    [$method], 
-                    $route, 
-                    $commandRegisterer->register(
-                        $route, 
-                        $method, 
-                        $data['operationId'],
-                        $requestParams, 
-                        $paramsValidator, 
-                        $requestValidator,
-                        $app->getContainer()
-                    )
-                );
-            }
-        }
-    }
-    
-}
+    /** @var RouteInjector $routesInjector */
+    private $routesInjector;
 
-class Elements implements ContainerInterface {
-    private $elements;
-    
-    public function __construct(array $elements) {
-        $this->elements = $elements;
-    }
-    public function get($id) {
-        return $this->elements[$id];
+    public function __construct(
+        RouteInjector $routesInjector = null,
+        ParamsValidator $paramsValidator = null,
+        RequestValidator $requestValidator = null
+    ) {
+        $paramsValidator = $paramsValidator ?: new NullParamsValidator();
+        $requestValidator = $requestValidator ?: new NullRequestValidator();
+        $this->routesInjector = $routesInjector ?: new DefaultRouteInjector($paramsValidator, $requestValidator);
     }
 
-    public function has($id): bool {
-        return isset($this->elements[$id]);
+    public function InjectRoutesFromConfig(
+        ApplicationBridge $app,
+        $config,
+        Commandregisterer $commandRegisterer = null
+    ) {
+        //$commandRegisterer = $commandRegisterer ?: new DefaultCommandRegisterer();
+        $this->routesInjector->inject($app, $config, $commandRegisterer);
     }
-}
 
-class ParamsValidator {
-    private function validateTypes(
-        ContainerInterface $requestParams, 
-        RequestInterface $request
-    ) {
-        return true;
-    }
-    
-    public function isValid(
-        ContainerInterface $requestParams, 
-        RequestInterface $request
-    ) {
-        //validate types, maybe with filter_var
-        if (!$this->validateTypes($requestParams, $request)) {
-            return false;
-        }
-    }
-}
-
-class RequestValidator {
-    public function isValid(
-        $route, 
-        $method, 
-        ContainerInterface $requestParams, 
-        RequestInterface $request
-    ) {
-        return true;
-    }
 }
