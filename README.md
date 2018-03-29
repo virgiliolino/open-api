@@ -5,7 +5,7 @@ Maybe it's about automation, or just about being more declarative because a non 
 I'd suggest, the best way to see it in action is just to clone the repository and try the Example Hello World Application:
 ```
 git clone git@github.com:virgiliolino/open-api.git
-cd SwaggerSlimDispatcher/Examples/HelloWorld/
+cd open-api/Examples/HelloWorld/
 composer install   #composer install will actually install Slim and open-api
 php -S localhost:8080 -t public public/index.php #start the server
 curl localhost:8080/hello/world # or just open the browser localhost:8080/hello/world

@@ -9,5 +9,12 @@ $container['HelloWorld'] = function () {
 $openApiFile = 'routes.json';
 $openApiConfigParser = Dispatcher\OpenApi\ParserFactory::parserFor($openApiFile);
 $openApiConfig = $openApiConfigParser->parse($openApiFile);
-\Dispatcher\OpenApi\OpenApiDispatcher::InjectRoutesFromConfig($app, $openApiConfig);
+$applicationBridge = new \Sab\Application\Bridge\SlimBridge($app);
+$routesInjector = new \Dispatcher\OpenApi\Route\DefaultRouteInjector();
+$openApiDispatcher = new \Dispatcher\OpenApi\OpenApiDispatcher($routesInjector);
+$openApiDispatcher->InjectRoutesFromConfig($applicationBridge, $openApiConfig);
+
 $app->run();
+
+
+
