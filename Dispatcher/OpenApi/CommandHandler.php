@@ -1,13 +1,12 @@
 <?php
 namespace Dispatcher\OpenApi;
 
-use \Psr\Http\Message\RequestInterface;
-use \Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 interface CommandHandler {
     public function execute(
-        String $operationId,
-        RequestInterface $request,
+        ServerRequestInterface $request,
         ResponseInterface $response,
         $params,
         $customAttributes = []
