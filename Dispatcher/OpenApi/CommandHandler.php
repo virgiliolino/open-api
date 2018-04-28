@@ -1,8 +1,8 @@
 <?php
 namespace Dispatcher\OpenApi;
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
+use \Psr\Http\Message\ServerRequestInterface;
+use \Psr\Http\Message\ResponseInterface;
 
 interface CommandHandler {
     public function execute(
