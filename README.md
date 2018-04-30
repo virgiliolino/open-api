@@ -37,9 +37,8 @@ You may find an example of a fully working Open-Api specification [here](http://
 
 ## Installation
 
-Even if its working, I'd not consider it really a *stable* package. So to install it you need to proceed in that way:
 ```
- composer require dispatcher/swagger-dispatcher dev-master
+composer require dispatcher/open-api
 ```
 
 ## Examples/Helloworld
