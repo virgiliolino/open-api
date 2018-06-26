@@ -7,7 +7,7 @@ I'd suggest, the best way to see it in action is just to clone the repository an
 git clone git@github.com:virgiliolino/open-api.git
 cd open-api/Examples/HelloWorld/
 composer install   #composer install will actually install Slim and open-api
-php -S localhost:8080 -t public public/index.php #start the server
+php -S localhost:8080 -t public #start the server
 curl localhost:8080/hello/world # or just open the browser localhost:8080/hello/world
 ```
 
